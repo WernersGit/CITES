@@ -1,0 +1,510 @@
+/* Layout */
+
+.live-container {
+    display: flex;
+    flex-direction: column;
+    padding: var(--top-bar) 2rem 1.5rem var(--page-left);
+    gap: 1.2rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.live-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.live-title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #e0e6f0;
+}
+
+.live-vehicle-select {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.live-vehicle-select label {
+    color: #a0aabb;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.vehicle-dropdown {
+    background: #1e2433;
+    color: #e0e6f0;
+    border: 1px solid #3a4460;
+    border-radius: 6px;
+    padding: 0.45rem 0.9rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    min-width: 200px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.vehicle-dropdown:focus {
+    border-color: #4a9eff;
+}
+
+/* Demo Controls */
+
+.live-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    background: #161b27;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #2a3244;
+}
+
+.controls-label {
+    color: #6a7a99;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-right: 0.3rem;
+}
+
+.ctrl-btn {
+    background: #1e2433;
+    color: #8090aa;
+    border: 1px solid #2a3244;
+    border-radius: 5px;
+    padding: 0.35rem 0.75rem;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.ctrl-btn:hover {
+    border-color: #4a6088;
+    color: #c0cce0;
+}
+
+.ctrl-btn.active {
+    background: #2a3a55;
+    color: #e0ecff;
+    border-color: #4a7acc;
+}
+
+.ctrl-btn.blinker-btn.active {
+    background: #3a2e0a;
+    color: #ffcc44;
+    border-color: #cc8800;
+}
+
+.ctrl-btn.hazard-btn.active {
+    background: #3a2a00;
+    color: #ffaa00;
+    border-color: #ff8800;
+    animation: hazard-pulse 0.5s ease-in-out infinite alternate;
+}
+
+.ctrl-btn.brake-btn.active {
+    background: #3a0a0a;
+    color: #ff5555;
+    border-color: #cc2222;
+}
+
+.ctrl-btn.accel-btn.active {
+    background: #0a2a1a;
+    color: #44ff88;
+    border-color: #00aa44;
+}
+
+@keyframes hazard-pulse {
+    from { box-shadow: none; }
+    to   { box-shadow: 0 0 8px #ff8800; }
+}
+
+.controls-spacer {
+    flex: 1;
+}
+
+.ctrl-btn.autocenter-btn {
+    background: #0e1f2a;
+    color: #44bbee;
+    border-color: #1a5070;
+    font-weight: 600;
+}
+
+.ctrl-btn.autocenter-btn:hover {
+    background: #102535;
+    color: #66ddff;
+    border-color: #2288bb;
+}
+
+.ctrl-btn.autocenter-btn.active {
+    background: #0a3a50;
+    color: #00eeff;
+    border-color: #00ccee;
+    box-shadow: 0 0 8px rgba(0,220,240,0.5), inset 0 0 6px rgba(0,200,220,0.15);
+    font-weight: 700;
+}
+
+.ctrl-btn.mode-btn {
+    background: #1a1535;
+    color: #a78bfa;
+    border-color: #5b21b6;
+    font-weight: 600;
+}
+
+.ctrl-btn.mode-btn:hover {
+    background: #2a1f50;
+    color: #c4b5fd;
+    border-color: #7c3aed;
+}
+
+/* Offline playback controls */
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.speed-label {
+    color: #8090aa;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    min-width: 5.5rem;
+}
+
+.speed-slider {
+    width: 90px;
+    accent-color: #44aaff;
+    cursor: pointer;
+}
+
+/* Main Content */
+
+.live-content {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1.5rem;
+    flex: 1;
+    min-height: 0;
+}
+
+@media (max-width: 900px) {
+    .live-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.panel-title {
+    margin: 0 0 0.8rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #8090aa;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.panel-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+
+.panel-title-row .panel-title {
+    margin-bottom: 0;
+}
+
+.panel-ts {
+    font-size: 0.78rem;
+    color: #6a7a96;
+    font-family: monospace;
+    letter-spacing: 0.02em;
+}
+
+.car-panel {
+    display: flex;
+    flex-direction: column;
+    background: #161b27;
+    border: 1px solid #2a3244;
+    border-radius: 10px;
+    padding: 1.2rem;
+}
+
+.map-panel {
+    display: flex;
+    flex-direction: column;
+    background: #161b27;
+    border: 1px solid #2a3244;
+    border-radius: 10px;
+    padding: 1.2rem;
+    min-height: 400px;
+}
+
+/* Car SVG */
+
+.car-svg-container {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+}
+
+.car-svg {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    overflow: visible;
+}
+
+/* Body */
+.car-body  { fill: #263040; }
+.car-hood  { fill: #222a38; }
+.car-trunk { fill: #222a38; }
+.cabin     { fill: #141a26; }
+.body-line { stroke: #3a4a5c; stroke-width: 1; }
+.pillar    { stroke: #1a2234; stroke-width: 3; stroke-linecap: round; }
+
+/* Windshields */
+.windshield       { fill: rgba(140,175,220,0.18); stroke: rgba(140,175,220,0.35); stroke-width: 1; }
+.front-windshield { fill: rgba(140,175,220,0.22); }
+.rear-windshield  { fill: rgba(140,175,220,0.14); }
+
+/* Wheels — rx is set as an SVG attribute on the element, not here */
+.wheel     { fill: #111418; }
+.wheel-rim { fill: #1e2430; }
+
+/* Mirrors */
+.mirror { fill: #1e2838; stroke: #3a4a5c; stroke-width: 0.5; }
+
+/* Grille */
+.grille { stroke: #3a4a5c; stroke-width: 1.5; stroke-linecap: round; }
+
+/* Rear centre strip (reverse / fog placeholder) */
+.rear-center { fill: #1e2430; }
+
+/* Headlights */
+
+/* transition applies to all headlight states */
+.headlight { transition: fill 0.2s, filter 0.2s; }
+
+.headlight.off {
+    fill: #1a1e28;
+}
+
+.headlight.low-beam {
+    fill: #fff5a0;
+    filter: drop-shadow(0 0 8px rgba(255,240,120,0.9));
+}
+
+.headlight.high-beam {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 14px rgba(255,255,255,1));
+}
+
+/* DRL accent strip -- sole visible element in DRL-only mode */
+.drl-strip {
+    fill: #ffe060;
+    opacity: 0.9;
+    filter: drop-shadow(0 0 5px rgba(255,224,96,0.85));
+}
+
+/* High-beam projection rays */
+.beam-ray {
+    stroke: rgba(255,255,200,0.6);
+    stroke-width: 2;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 3px rgba(255,255,200,0.8));
+}
+
+/* Turn Signals */
+
+.turn-signal {
+    fill: #251800;
+    transition: fill 0.1s;
+}
+
+.turn-signal.blinking {
+    fill: #ff9900;
+    filter: drop-shadow(0 0 6px rgba(255,153,0,0.9));
+    animation: blink-signal 0.6s step-end infinite;
+}
+
+@keyframes blink-signal {
+    0%, 100% { fill: #ff9900; filter: drop-shadow(0 0 6px rgba(255,153,0,0.9)); opacity: 1; }
+    50%      { fill: #1a1000; filter: none; opacity: 0.15; }
+}
+
+/* Tail / Brake Lights */
+
+.tail-light {
+    fill: #2a0808;
+    transition: fill 0.15s, filter 0.15s;
+}
+
+.tail-light.brake {
+    fill: #ff2020;
+    filter: drop-shadow(0 0 10px rgba(255,30,30,1));
+}
+
+/* Acceleration / Speed Lines */
+
+.accel-line {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.accel-line.active {
+    opacity: 1;
+}
+
+.speed-line {
+    stroke: #4af0aa;
+    stroke-linecap: round;
+}
+
+/* Staggered delays produce a cascading streak effect. */
+.speed-line-1 {
+    stroke-width: 2.5;
+    animation: speed-flash 0.4s ease-out infinite;
+}
+
+.speed-line-2 {
+    stroke-width: 1.8;
+    animation: speed-flash 0.4s ease-out 0.13s infinite;
+}
+
+.speed-line-3 {
+    stroke-width: 1.2;
+    animation: speed-flash 0.4s ease-out 0.26s infinite;
+}
+
+@keyframes speed-flash {
+    0%   { opacity: 0.9; }
+    100% { opacity: 0; }
+}
+
+/* Direction arrows */
+
+.direction-arrow {
+    fill: #4af0aa;
+    filter: drop-shadow(0 0 5px rgba(74,240,170,0.7));
+}
+
+/* Current MAC label */
+
+.car-mac-label {
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: #7ab0d8;
+    text-align: center;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.04em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Speed display */
+
+.car-speed {
+    text-align: center;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #c8ddf0;
+    margin: 0.35rem 0 0.5rem;
+    letter-spacing: 0.04em;
+}
+
+/* ADAS indicators */
+
+.car-adas-row {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.adas-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.18rem 0.55rem;
+    border-radius: 4px;
+    background: #1a2030;
+    color: #445060;
+    border: 1px solid #2a3244;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+}
+
+.adas-badge.active {
+    background: #0a2a1a;
+    color: #44ff88;
+    border-color: #00aa44;
+    filter: drop-shadow(0 0 4px rgba(68,255,136,0.4));
+}
+
+/* Visible MACs list */
+
+.visible-macs-section {
+    margin-top: 0.8rem;
+    border-top: 1px solid #2a3244;
+    padding-top: 0.6rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.visible-macs-header {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #6a7a99;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.35rem;
+}
+
+.visible-macs-list {
+    overflow-y: auto;
+    flex: 1;
+    max-height: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.visible-mac-entry {
+    font-size: 0.75rem;
+    font-family: monospace;
+    color: #8898b8;
+    padding: 2px 0;
+    white-space: nowrap;
+}
+
+.visible-mac-id {
+    color: #6a7a99;
+}
+
+.visible-macs-empty {
+    font-size: 0.78rem;
+    color: #445060;
+    font-style: italic;
+}
+
+/* Map */
+
+.live-map {
+    flex: 1;
+    min-height: 350px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #111622;
+}

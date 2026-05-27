@@ -1,0 +1,101 @@
+.home-page {
+    padding: var(--top-bar) 2rem 1.5rem var(--page-left);
+    max-width: 880px;
+}
+
+/* Connection cards */
+
+.connect-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    max-width: 440px;
+}
+
+/* Status headings */
+
+.status-connected { color: var(--accent-green); margin: 0 0 0.75rem; font-size: 1.05rem; font-weight: 600; }
+.status-scanning  { color: var(--accent);       margin: 0 0 0.75rem; font-size: 1.05rem; font-weight: 600; }
+.status-error     { color: var(--accent-red);   margin: 0 0 0.75rem; font-size: 1.05rem; font-weight: 600; }
+.status-muted     { color: var(--text-muted);   margin: 0 0 0.75rem; font-size: 1.05rem; font-weight: 600; }
+
+/* Stat grid (connected state) */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.65rem;
+    margin-bottom: 1.1rem;
+}
+
+.stat-cell {
+    background: var(--bg-btn);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 0.8rem 1rem;
+}
+
+.stat-cell.full-width  { grid-column: 1 / -1; }
+.stat-cell.warning     { border-color: #5a3f00; background: #1a1200; }
+
+.stat-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.2rem;
+}
+
+.stat-label.warning { color: #bb8800; }
+
+.stat-value {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-value.warning { color: #ffbb00; }
+
+/* Device list */
+
+.device-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.device-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.85rem;
+    background: var(--bg-btn);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+}
+
+.device-name {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+/* Hostname input wrapper */
+
+.hostname-input {
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+/* Connecting state */
+
+.connecting-text {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}

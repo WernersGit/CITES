@@ -1,0 +1,14 @@
+[package]
+name = "mobile"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dioxus = { workspace = true, features = ["router"] }
+platform = { version = "0.1.0", path = "../platform" }
+ui = { workspace = true }
+
+[features]
+default = ["mobile"]
+mobile = ["dioxus/mobile"]
+server = ["dioxus/server", "ui/server"]

@@ -1,0 +1,15 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+chrono = "0.4.44"
+crossbeam-channel = "0.5.15"
+dioxus = { workspace = true, features = ["fullstack"] }
+pcap-file = "2.0.0"
+serde = { version = "1.0.228", features = ["derive"] }
+sysinfo = "0.38.4"
+
+[features]
+server = ["dioxus/server"]

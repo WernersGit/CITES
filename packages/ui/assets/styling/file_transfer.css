@@ -1,0 +1,120 @@
+/* ── File Transfer page ───────────────────────────────────────────────────── */
+
+.ft-page {
+    padding: var(--top-bar) 2rem 2rem var(--page-left);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    max-width: 800px;
+}
+
+.ft-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Archive select row */
+
+.ft-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.ft-archive-select {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* Dropzone */
+
+.ft-dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    padding: 2.5rem 1.5rem;
+    border: 2px dashed var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-input);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    text-align: center;
+    user-select: none;
+}
+
+.ft-dropzone:hover,
+.ft-dropzone-active {
+    border-color: var(--accent);
+    background: #080e1a;
+}
+
+.ft-drop-icon {
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--text-muted);
+}
+
+.ft-dropzone-active .ft-drop-icon,
+.ft-dropzone:hover .ft-drop-icon {
+    color: var(--accent);
+}
+
+.ft-drop-hint {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.ft-drop-sub {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.ft-drop-filename {
+    margin: 0;
+    font-family: monospace;
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    word-break: break-all;
+}
+
+.ft-drop-size {
+    margin: 0;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+/* Upload action row */
+
+.ft-upload-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Status messages */
+
+.ft-msg {
+    margin: 0;
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+    border-radius: var(--radius-sm);
+}
+
+.ft-error {
+    color: var(--accent-red);
+    background: #1a0606;
+    border: 1px solid #5a2020;
+}
+
+.ft-ok {
+    color: var(--accent-green);
+    background: #061a0a;
+    border: 1px solid #205a28;
+}

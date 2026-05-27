@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.example.Mobile</string>
+    <key>CFBundleExecutable</key>
+    <string>mobile</string>
+    <key>UIDeviceFamily</key>
+    <array>
+        <integer>1</integer>
+        <integer>2</integer>
+    </array>
+
+    <!--
+        Allow plain HTTP connections to CITES nodes on the local network:
+        ATS would block all requests without this exception.
+        NSAllowsLocalNetworking covers 169.254.x.x,192.168.x.x, 10.x.x.x, and .local hostnames.
+    -->
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsLocalNetworking</key>
+        <true/>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
+
+    <!-- Required for BLE scanning on real devices (has no effect in simulator). -->
+    <key>NSBluetoothAlwaysUsageDescription</key>
+    <string>CITES uses Bluetooth to discover and connect to nearby edge nodes.</string>
+    <key>NSBluetoothPeripheralUsageDescription</key>
+    <string>CITES uses Bluetooth to stream ITS packet data from edge nodes.</string>
+
+    <!-- Required for local network access on iOS 14+. -->
+    <key>NSLocalNetworkUsageDescription</key>
+    <string>CITES connects to CITES edge nodes on the local network via IP.</string>
+</dict>
+</plist>

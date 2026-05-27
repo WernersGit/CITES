@@ -1,0 +1,209 @@
+.analysis-page {
+    padding: var(--top-bar) 2rem 5rem var(--page-left);
+}
+
+/* Mode toggle bar (fixed at bottom) */
+
+.mode-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 52px;
+    background: var(--bg-panel);
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    z-index: 100;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.mode-btn {
+    padding: 0.45rem 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.mode-btn.active {
+    background: #1a3a5c;
+    color: var(--accent);
+    border-color: #2a5880;
+}
+
+/* Empty state */
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+    color: var(--text-muted);
+    gap: 0.75rem;
+}
+
+.empty-state-text { font-size: 0.95rem; }
+
+/* Filter toggle */
+
+.filter-toggle {
+    padding: 0.35rem 0.85rem;
+    background: var(--bg-btn);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+}
+
+.filter-toggle:hover { border-color: var(--border-accent); color: var(--text-primary); }
+
+/* Filter panel */
+
+.filter-panel {
+    margin-top: 0.5rem;
+    padding: 0.85rem 1rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.filter-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.filter-hint {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+.filter-input {
+    padding: 0.35rem 0.6rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.82rem;
+    outline: none;
+    width: 90px;
+    transition: border-color var(--transition);
+}
+
+.filter-input.wide   { width: 140px; }
+.filter-input.narrow { width: 65px; }
+.filter-input:focus  { border-color: var(--border-focus); }
+.filter-input::placeholder { color: var(--text-muted); }
+
+.filter-select {
+    padding: 0.35rem 0.6rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.82rem;
+    min-width: 200px;
+    outline: none;
+    cursor: pointer;
+}
+
+.filter-inline { display: flex; gap: 0.4rem; align-items: center; }
+
+.filter-sep { font-size: 0.78rem; color: var(--text-muted); }
+
+/* Summary bar */
+
+.summary-bar {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.stat-pill {
+    padding: 0.35rem 0.85rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+.stat-pill strong { color: var(--text-primary); font-weight: 600; }
+
+/* Decode stats bar */
+
+.decode-stats {
+    margin-bottom: 1.25rem;
+    padding: 0.5rem 0.85rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    display: flex;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+}
+
+/* Online panel */
+
+.online-panel {
+    display: inline-block;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.online-panel-title {
+    margin: 0 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.online-panel-desc {
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+}
+
+/* Chart grid */
+
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr));
+    gap: 1rem;
+    align-items: start;
+}
+
+.chart-grid-full { grid-column: 1 / -1; }
+
+/* Filter margin */
+
+.filter-wrapper { margin-bottom: 1rem; }
+
+/* Inline select that needs dark background */
+.filter-select option { background: var(--bg-input); }

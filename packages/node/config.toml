@@ -1,0 +1,17 @@
+name = "CITES-Node-3"
+mode = "Local"
+
+[interfaces]
+# Monitor-mode interface: must carry Radiotap headers for ego-vehicle analysis.
+capture_interface = "mon0"
+# Injection interface: set to the OCB-mode interface so frames are transmitted over RF.
+# Omit or comment out to fall back to capture_interface.
+injection_interface = "mon0"
+enable_bluetooth = true
+enable_network_api = true
+network_port = 8080
+
+# mode = "Cloud"
+# [mongodb]
+# uri = "mongodb+srv://user:pass@cluster0.mongodb.net"
+# database = "cites"

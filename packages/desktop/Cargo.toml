@@ -1,0 +1,15 @@
+[package]
+name = "desktop"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dioxus = { workspace = true, features = ["router"] }
+platform = { version = "0.1.0", path = "../platform" }
+ui = { workspace = true }
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+[features]
+default = ["desktop"]
+desktop = ["dioxus/desktop"]
+server = ["dioxus/server", "ui/server"]

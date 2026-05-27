@@ -1,0 +1,284 @@
+/* ── Design tokens ────────────────────────────────────────────────
+   Loaded on every route via the Navbar layout — available app-wide. */
+:root {
+    --bg-page:    #0f1420;
+    --bg-panel:   #161b27;
+    --bg-input:   #1a2030;
+    --bg-btn:     #1e2433;
+
+    --border:        #2a3244;
+    --border-accent: #3a4460;
+    --border-focus:  #4a9eff;
+
+    --text-primary:   #e0e6f0;
+    --text-secondary: #a0aabb;
+    --text-muted:     #6a7a99;
+    --text-label:     #8090aa;
+
+    --accent:       #44aaff;
+    --accent-green: #4af0aa;
+    --accent-red:   #ff5555;
+    --accent-amber: #ffaa00;
+
+    --radius-sm: 5px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --transition: 0.15s;
+
+    /* Left offset that clears the fixed hamburger button (~38 px at 0.85 rem). */
+    --page-left: 4rem;
+
+    /* Shared vertical offset: hamburger top edge and page title top edge. */
+    --top-bar: 1rem;
+}
+
+/* ── Hamburger button ────────────────────────────────────────────── */
+
+.hamburger-btn {
+    position: fixed;
+    top: var(--top-bar);
+    left: var(--top-bar);
+    z-index: 1001;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.45rem 0.55rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 38px;
+    box-sizing: border-box;
+    transition: border-color var(--transition);
+}
+
+.hamburger-btn:hover {
+    border-color: var(--border-accent);
+}
+
+.hamburger-line {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--text-secondary);
+    border-radius: 1px;
+    transition: background var(--transition);
+}
+
+.hamburger-btn:hover .hamburger-line {
+    background: var(--text-primary);
+}
+
+/* ── Sidebar ─────────────────────────────────────────────────────── */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    background: var(--bg-panel);
+    border-right: 1px solid var(--border);
+    padding-top: 3.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease-in-out;
+    z-index: 1000;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    margin: 0 0.6rem;
+    padding: 0.55rem 0.9rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    transition: background var(--transition), color var(--transition);
+}
+
+.sidebar a:hover {
+    background: var(--bg-btn);
+    color: var(--text-primary);
+}
+
+/* ── Shared page layout ──────────────────────────────────────────── */
+
+.page-container {
+    padding: var(--top-bar) 2rem 1.5rem var(--page-left);
+    box-sizing: border-box;
+}
+
+.page-title {
+    margin: 0 0 1.5rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.section-title {
+    margin: 0 0 0.75rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+/* ── Card ────────────────────────────────────────────────────────── */
+
+.card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1.5rem;
+}
+
+.card-title {
+    margin: 0 0 0.4rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.card-desc {
+    margin: 0 0 1rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────── */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.55rem 1.25rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all var(--transition);
+    white-space: nowrap;
+}
+
+.btn-full { width: 100%; box-sizing: border-box; }
+
+.btn-primary {
+    background: #1a3a5c;
+    color: var(--accent);
+    border-color: #2a5880;
+}
+.btn-primary:hover { background: #1e4570; border-color: var(--accent); }
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-secondary {
+    background: var(--bg-btn);
+    color: var(--text-secondary);
+    border-color: var(--border);
+}
+.btn-secondary:hover { background: #28334d; color: var(--text-primary); border-color: var(--border-accent); }
+
+.btn-success {
+    background: #0a2a1a;
+    color: var(--accent-green);
+    border-color: #1a5030;
+}
+.btn-success:hover { background: #0d3520; border-color: var(--accent-green); }
+
+.btn-danger {
+    background: #2a0f0f;
+    color: var(--accent-red);
+    border-color: #5a2020;
+}
+.btn-danger:hover { background: #3a1515; border-color: var(--accent-red); }
+
+/* ── Form controls ───────────────────────────────────────────────── */
+
+.form-input,
+.form-select {
+    padding: 0.45rem 0.75rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color var(--transition);
+    box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-select:focus  { border-color: var(--border-focus); }
+.form-input::placeholder { color: var(--text-muted); }
+
+.form-select { cursor: pointer; }
+
+/* ── Spinner ─────────────────────────────────────────────────────── */
+
+.spinner {
+    width: 34px;
+    height: 34px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.85s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Conflict modal ──────────────────────────────────────────────── */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 2rem;
+    max-width: 440px;
+    width: 90%;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7);
+}
+
+.modal-title {
+    margin: 0 0 0.85rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.modal-body {
+    margin: 0 0 1.4rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+.modal-body strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}

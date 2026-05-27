@@ -1,0 +1,73 @@
+# Cross-compilation builder: runs natively on x86-64, produces an aarch64 binary.
+# Use this on the remote x86 Docker host to avoid QEMU emulation crashes.
+FROM rust:bookworm
+
+# enable ARM64 packages and install cross-compilation toolchain
+RUN dpkg --add-architecture arm64 && \
+    apt-get update && apt-get install -y \
+    gcc-aarch64-linux-gnu \
+    g++-aarch64-linux-gnu \
+    libpcap-dev:arm64 \
+    libssl-dev:arm64 \
+    build-essential \
+    pkg-config \
+    git \
+    autoconf \
+    automake \
+    libtool \
+    bison \
+    byacc \
+    flex \
+    clang \
+    libclang-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN rustup target add aarch64-unknown-linux-gnu
+RUN rustup component add rustfmt
+
+# Cross-compiler settings for cc-rs and cargo.
+# Use the GCC cross-compiler rather than clang: clang 14 (Bookworm) has a known segfault when cross-compiling large C files for aarch64 (-O3).
+ENV CC_aarch64_unknown_linux_gnu=aarch64-linux-gnu-gcc
+ENV CXX_aarch64_unknown_linux_gnu=aarch64-linux-gnu-g++
+ENV CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=aarch64-linux-gnu-gcc
+ENV PKG_CONFIG_ALLOW_CROSS=1
+ENV PKG_CONFIG_SYSROOT_DIR=/usr/lib/aarch64-linux-gnu
+ENV PKG_CONFIG_PATH=/usr/lib/aarch64-linux-gnu/pkgconfig
+
+WORKDIR /workspace
+
+COPY Cargo.toml Cargo.lock ./
+COPY packages/ packages/
+
+ARG SKIP_ASN1_BUILD=false
+RUN if [ "$SKIP_ASN1_BUILD" = "true" ]; then \
+        tar -xf packages/core/src/asn1_c/linux.tar \
+            -C packages/core/src/asn1_c/; \
+    else \
+        export YACC="bison -y" LEX=flex && \
+        bash packages/core/resources/asn1/build_asn1_c.sh; \
+    fi
+
+# case-alias copies
+RUN for mod in cam_v2 denm_v2 cpm_v2 is_v2; do \
+        d=packages/core/src/asn1_c/$mod; \
+        [ -f "$d/ActionId.h" ]  && cp "$d/ActionId.h"  "$d/ActionID.h"  || true; \
+        [ -f "$d/StationId.h" ] && cp "$d/StationId.h" "$d/StationID.h" || true; \
+    done && \
+    d=packages/core/src/asn1_c/is_v2 && \
+    [ -f "$d/IntersectionReferenceId.h" ] && cp "$d/IntersectionReferenceId.h" "$d/IntersectionReferenceID.h" || true && \
+    [ -f "$d/RoadSegmentReferenceId.h" ]  && cp "$d/RoadSegmentReferenceId.h"  "$d/RoadSegmentReferenceID.h"  || true
+
+RUN find packages/core/src/asn1_c -name '*.c' \
+    | xargs grep -rl '__attribute__((weak, alias' \
+    | xargs sed -i '/extern.*__attribute__((weak, alias/d'
+
+# Cross-compile natively on x86, targeting aarch64.
+# -Clink-arg: multiple ASN.1 modules define the same C symbols; allow at linker level.
+# -A clashing_extern_declarations: the same C helpers are re-declared in each ASN.1 Rust module with module-local type aliases, triggering this lint in newer Rust.
+RUN RUSTFLAGS="-Clink-arg=-Wl,--allow-multiple-definition -A clashing_extern_declarations" \
+    RUST_BACKTRACE=1 cargo build --release -p node --target aarch64-unknown-linux-gnu \
+    && cp target/aarch64-unknown-linux-gnu/release/node /node \
+    && rm -rf target/ packages/
+
+CMD ["/node"]
